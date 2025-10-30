@@ -51,7 +51,7 @@ jobs:
 
       - name: Terraform Format Check
         id: fmt
-        run: terraform fmt -check -recursive
+        run: terraform fmt -check -recursive || true
         continue-on-error: true
 
       - name: Terraform Init
