@@ -1,5 +1,5 @@
 locals {
-  name_prefix = "${var.project_name}"
+  name_prefix = var.project_name
   lambda_zip  = "${path.module}/lambda/lambda.zip"
 }
 
@@ -101,9 +101,9 @@ resource "aws_apigatewayv2_api" "http_api" {
 
 # Integration between API and Lambda
 resource "aws_apigatewayv2_integration" "lambda_integration" {
-  api_id             = aws_apigatewayv2_api.http_api.id
-  integration_type   = "AWS_PROXY"
-  integration_uri    = aws_lambda_function.api_handler.invoke_arn
+  api_id                 = aws_apigatewayv2_api.http_api.id
+  integration_type       = "AWS_PROXY"
+  integration_uri        = aws_lambda_function.api_handler.invoke_arn
   payload_format_version = "2.0"
 }
 
